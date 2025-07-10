@@ -12,6 +12,7 @@ class ControllerQuery{
         $this->commentQuery = new CommentQuery();
     }
 
+    //phía người quản trị
     public function webphone(){
         include "views/chung/webphone.php";
     }
@@ -29,6 +30,109 @@ class ControllerQuery{
         include "views/administrator/giaodien.php";
     }
 
+    public function quanly_sanpham(){
+        $danhsach = $this->productQuery->all();
+        
+        include "views/administrator/quanly_sanpham.php";
+    }
+
+    //luồng sử lý phần quản lý sản phẩm
+    public function delete_sanpham($id){
+        $ketqua = $this->productQuery->delete($id);
+        if($ketqua ===1){
+            header("Location: ?action=quanly_sanpham");
+            exit;
+        }
+        else{
+            $loi ="không thể xóa";
+            $danhsach->this->productQuery->all();
+             include "views/administrator/quanly_sanpham.php";
+        }
+    }
+
+public function create_sanpham() {
+    // Lấy sản phẩm theo ID để hiển thị lên form
+    $loi ="";
+    $thanhcong="";
+    $sanpham = new Product();
+    $danhsach =$this->categoryQuery->all();
+
+    if (isset($_POST['create_sanpham'])) {
+        // Cập nhật dữ liệu mới từ form
+        $sanpham->name        = $_POST['name'];
+        if($_FILES['anh_sp']['size']>0){
+            $sanpham->image = upload_file('anh',$_FILES['anh_sp']);
+        }
+        $sanpham->price       = $_POST['price'];
+        $sanpham->idcategory  = $_POST['idcategory'];
+        $sanpham->description = $_POST['description'];
+        $sanpham->hot         = $_POST['hot'];
+        $sanpham->discount    = $_POST['discount'];
+        $sanpham->quantity    = $_POST['quantity'];
+
+        if($sanpham->name ===""){
+            $loi = "kiểm tra lại các trường giữ liệu";
+        }
+        else{
+            $ketqua_update = $this->productQuery->create($sanpham);
+                if($ketqua_update ===1){
+                    $thanhcong="create sản phẩm thành công";
+                }
+                else{
+                    $loi ='create sản phẩm thất bại';
+                }
+            }
+        }
+    
+
+    // Hiển thị giao diện sửa
+    include "views/administrator/create_sanpham.php";
+}
+
+public function update_sanpham($id) {
+    // Lấy sản phẩm theo ID để hiển thị lên form
+    $loi ="";
+    $thanhcong="";
+    $sanpham = $this->productQuery->find($id);
+    $danhsach =$this->categoryQuery->all();
+
+    if (isset($_POST['update_sanpham'])) {
+        // Cập nhật dữ liệu mới từ form
+
+        $sanpham->id         =$id;
+        $sanpham->name        = $_POST['name'];
+        if($_FILES['anh_sp']['size']>0){
+            $sanpham->image = upload_file('anh',$_FILES['anh_sp']);
+        }
+        $sanpham->price       = $_POST['price'];
+        $sanpham->idcategory  = $_POST['idcategory'];
+        $sanpham->description = $_POST['description'];
+        $sanpham->hot         = $_POST['hot'];
+        $sanpham->discount    = $_POST['discount'];
+        $sanpham->quantity    = $_POST['quantity'];
+
+        if($sanpham->name ===""){
+            $loi = "kiểm tra lại các trường giữ liệu";
+        }
+        else{
+            $ketqua_update = $this->productQuery->update($sanpham);
+                if($ketqua_update >0){
+                    $thanhcong="update sản phẩm thành công";
+                }
+                else{
+                    $loi ='update sản phẩm thất bại';
+                }
+            }
+        }
+    
+
+    // Hiển thị giao diện sửa
+    include "views/administrator/update_sanpham.php";
+}
+
+
+
+    //phía khách hàng============================================
     public function trangchu(){
         include "views/user/trangchu.php";
     }

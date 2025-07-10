@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <div clas="banner" ><img src="./img/xiaomi-dien-thoai-cate.webp" alt="" style="width:1200px; height:250px;"></div>
+    <div clas="banner" ><img src="./img/xiaomi-dien-thoai-cate.webp" alt="" style="width:1200px; height:300px;"></div>
     <main>
         <div class="danhmuc">
             <h3>danh mục:</h3>

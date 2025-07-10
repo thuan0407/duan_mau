@@ -1,5 +1,7 @@
 <?php 
-
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 if(isset($_POST['dangnhap'])){
     $username = $_POST['username'];
     $pass = $_POST['password'];
