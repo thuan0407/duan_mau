@@ -36,7 +36,7 @@ $page = $_GET['page'] ?? 'dashboard'; // Mặc định trang dashboard
 <body>
     <div class="menu">
  <h2>Chào mừng admin: <?= $_SESSION['admin']?>
-        <li><a href="?action=<?='quanly_sanpham'?>">Trang chủ</a></li>
+        <li><a href="?action=<?='trangchu_admin'?>">Trang chủ</a></li>
         <li><a href="?action=<?='quanly_danhmuc'?>">Quản lý danh mục</a></li>
         <li><a href="?action=<?='quanly_sanpham'?>">Quản lý sản phẩm</a></li>
         <li><a href="?action=<?='quanly_binhluan'?>">Quản lý bình luận</a></li>

@@ -79,6 +79,9 @@ class ControllerQuery{
         
         include "views/administrator/giaodien.php";
     }
+    public function trangchu_admin(){
+        include "views/administrator/trangchu.php";
+    }
 
     public function quanly_sanpham(){
         $danhsach = $this->productQuery->all();
@@ -87,14 +90,60 @@ class ControllerQuery{
     }
 
     public function quanly_danhmuc(){
-        $danhsach = $this->productQuery->all();
+        $danhsach = $this->categoryQuery->all();
+        $thanhcong="";
+        $loi="";
+        $danhmuc = new Category();
+        if(isset($_POST['create'])){
+            $danhmuc->name  = $_POST['name_danhmuc'];
+            $danhmuc->date  = date("Y-m-d H:i:s");
+            if(empty($danhmuc->name)){
+                $loi="kiểm tra lại dữ liệu";
+            }
+            else{
+                $ketqua = $this->categoryQuery->create($danhmuc);
+                if($ketqua ===1){
+                    $thanhcong="tạo danh mục thành công";
+                }
+                else{
+                    $loi="tọa danh mục thất bại";
+                }
+            }
+        }
         
         include "views/administrator/quanly_danhmuc.php";
     }
 
+public function delete_danhmuc($id) {
+    $danhmuc = $this->categoryQuery->find($id);
+    $thongbao = "";
+    $loi="";
+    $thanhcong="";
+
+    // Kiểm tra tồn tại và số lượng sản phẩm
+    if (!$danhmuc) {
+        $thongbao = "Danh mục không tồn tại!";
+    } else if ($danhmuc->sum > 0) {
+        $thongbao = "Không thể xóa khi danh mục vẫn còn sản phẩm.";
+    } else {
+        // Cho phép xóa
+        $ketqua = $this->categoryQuery->delete_danhmuc($id);
+        if ($ketqua === 1) {
+            header("Location: ?action=quanly_danhmuc");
+            exit;
+        } else {
+            $thongbao = "Xóa danh mục thất bại.";
+        }
+    }
+
+    // Load lại danh sách danh mục và view
+    $danhsach = $this->categoryQuery->all();
+    include "views/administrator/quanly_danhmuc.php";
+}
+
+
     public function quanly_taikhoan(){
-        $danhsach = $this->productQuery->all();
-        
+        $danhsach = $this->userQuery->all();
         include "views/administrator/quanly_taikhoan.php";
     }
 
