@@ -9,6 +9,7 @@
     <style>
         body{
             width:1200px;
+            margin:0 auto;
         }
         .content{
             margin-left:300px;

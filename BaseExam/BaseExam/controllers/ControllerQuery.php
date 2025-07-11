@@ -17,11 +17,61 @@ class ControllerQuery{
         include "views/chung/webphone.php";
     }
 
+    public function dangky(){
+        $loi="";
+        $thanhcong="";
+        $user = new User();
+        if(isset($_POST['dangky'])){
+            $user->name=$_POST['name'];
+            $user->email=$_POST['email'];
+            $user->address=$_POST['address'];
+            $user->number=$_POST['number'];
+            $user->password=$_POST['password'];
+
+            if(empty($user->name)===""||empty($user->address)===""||empty($user->number)===""||empty($user->password)==="" ||empty($user->email)===""){
+                $loi="kiểm tra lại các trường giữ liệu";
+            }
+            else{
+                $ketqua = $this->userQuery->create($user);
+                if($ketqua ===1){
+                    $thanhcong="Đăng ký thành công";
+                }
+                else{
+                    $loi="Đăng ký thất bại";
+                }
+            }
+        }
+        
+        include "views/chung/dangky.php";
+    }
+    
     public function dangxuat(){
         include "views/chung/webphone.php";
     }
 
     public function dangnhap(){
+        $err="";
+        $user = $this->userQuery->all();
+        if(isset($_POST['dangnhap'])){
+            $email = $_POST['email'];
+            $pass = $_POST['password'];
+
+            foreach($user as $user){
+            if($email === "admin@gmail.com" && $pass === "123456"){
+                $_SESSION['admin'] = $email;
+                header("Location: ?action=giaodien"); // chuyển hướng
+                exit;
+            } else if($email === $user->email && $pass === $user->password){
+                $_SESSION['user'] = $user->name;
+                header("Location: ?action=trangchu"); // chuyển hướng
+                exit;
+            }
+            else{
+                $err="Đăng nhập thất bại hãy kiểm tra lại các trường thông tin";
+            }
+            }
+
+        }
         include "views/chung/login.php";
     }
 
@@ -34,6 +84,30 @@ class ControllerQuery{
         $danhsach = $this->productQuery->all();
         
         include "views/administrator/quanly_sanpham.php";
+    }
+
+    public function quanly_danhmuc(){
+        $danhsach = $this->productQuery->all();
+        
+        include "views/administrator/quanly_danhmuc.php";
+    }
+
+    public function quanly_taikhoan(){
+        $danhsach = $this->productQuery->all();
+        
+        include "views/administrator/quanly_taikhoan.php";
+    }
+
+    public function quanly_binhluan(){
+        $danhsach = $this->productQuery->all();
+        
+        include "views/administrator/quanly_binhluan.php";
+    }
+
+    public function quanly_donhang(){
+        $danhsach = $this->productQuery->all();
+        
+        include "views/administrator/quanly_donhang.php";
     }
 
     //luồng sử lý phần quản lý sản phẩm

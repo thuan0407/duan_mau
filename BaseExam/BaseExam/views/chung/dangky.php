@@ -1,8 +1,4 @@
-<?php 
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-?>
+<?php ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,11 +27,13 @@ if (session_status() === PHP_SESSION_NONE) {
         h2{
             text-align: center;
         }
-        a{
-            margin-left:130px;
-        }
-        button{
+        button {
             margin-left:150px;
+        }
+        a{
+            margin:10px 155px;
+        } table{
+            margin-left:50px;
         }
 
     </style>
@@ -43,14 +41,19 @@ if (session_status() === PHP_SESSION_NONE) {
 <body>
     <div class="top"><img src="./img/OIP.jpg" alt=""></div>
     <div class="dangnhap">
-    <h2>Đăng nhập</h2>
+    <h2>Đăng ký</h2>
 
 
 
     <form method="POST">
     <table>
         <tr>
-            <td>Tên đăng nhâp:</td>
+            <td>Tên:</td>
+            <td><input type="text" name="name"></td>
+        </tr>
+
+        <tr>
+            <td>email:</td>
             <td><input type="email" name="email" required placeholder="Nhập email"></td>
         </tr>
 
@@ -58,15 +61,23 @@ if (session_status() === PHP_SESSION_NONE) {
             <td>Mật khẩu:</td>
             <td><input type="password" name="password" required placeholder="Nhập mật khẩu"></td>
         </tr>
+        <tr>
+            <td>Địa chỉ</td>
+            <td><input type="text" name="address"></td>
+        </tr>
+        <tr>
+            <td>SDT:</td>
+            <td><input type="number" min="10" name="number"></td>
+        </tr>
         
     </table><br>
 
-        <button type="submit" name="dangnhap">Đăng nhập</button>
+        <button type="submit" name="dangky">Đăng ký</button>
+           <span style="color:red;"> <?= $loi?></span>
+           <span style="color:green;"> <?= $thanhcong?></span>
     </form>
 
-    <a href="?action=dangky">Đăng ký tài khoản</a>
+    <a href="?action=dangnhap">Đăng nhập</a>
      </div>
-
-    <?php if (isset($error)) echo "<p style='color:red;'>$error</p>"; ?>
 </body>
 </html>

@@ -1,11 +1,25 @@
+<?php require_once 'giaodien.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+        <style>
+        body{
+            width:1200px;
+            margin:0 auto;
+        }
+        main{
+            margin-left:500px;
+        }
+        h1{
+            margin:0px;
+        }
+    </style>
 </head>
 <body>
+    <main>
 <h1>Trang update sản phẩm</h1>
 <form action="" method="post" enctype="multipart/form-data">
     <table>
@@ -61,5 +75,6 @@
     <span><?= $loi?></span>
     <span><?= $thanhcong?></span>
 </form>
+</main>
 </body>
 </html>

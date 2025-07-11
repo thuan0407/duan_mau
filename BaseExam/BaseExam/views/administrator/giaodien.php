@@ -42,7 +42,7 @@ $page = $_GET['page'] ?? 'dashboard'; // Mặc định trang dashboard
         <li><a href="?action=<?='quanly_binhluan'?>">Quản lý bình luận</a></li>
         <li><a href="?action=<?='quanly_taikhoan'?>">Quản lý tài khoản</a></li>
         <li><a href="?action=<?='quanly_donhang'?>">Quản lý đơn hàng</a></li>
-        <li><a href="?action=<?='dangxuat'?>" name="dangxuat">Đăng xuất</a></li>
+        <li><a href="?action=<?='dangxuat'?>" name="dangxuat" onclick="return confirm('Bạn có chắc là muốn đăng xuất không?')">Đăng xuất</a></li>
         
     </div>
 </body>
