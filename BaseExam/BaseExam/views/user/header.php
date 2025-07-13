@@ -1,4 +1,5 @@
 <?php
+$currentPage = $_GET['action'] ?? 'trangchu';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,11 +23,17 @@
         }.left img{
             width:200px;
         }
-        a{
-            text-decoration: none;
-            margin-left:15px;
-            color:black;
-        }
+.menu a {
+    color: black;
+    text-decoration: none;
+    padding: 8px 12px;
+    font-weight: normal;
+}
+
+.menu a.active {
+    color: red;
+    font-weight: bold;
+}
         .right{
             display:flex;
         }
@@ -42,11 +49,10 @@
         <div class="left">
             <img src="./img/OIP.jpg" alt="">
             <div class="menu">
-                <a href="?action=<?= 'trangchu' ?>">Trang chủ</a>
-                <a href="?action=<?= 'gioithieu' ?>">Giới Thiệu</a>
-                <a href="?action=<?= 'sanpham'?>">Sản phẩm</a>
-                <a href="?action=<?= 'lienhe'?>">Liên hệ</a>
-            
+                <a href="?action=trangchu"  class="<?= $currentPage == 'trangchu'  ? 'active' : '' ?>">Trang chủ</a>
+                <a href="?action=gioithieu" class="<?= $currentPage == 'gioithieu' ? 'active' : '' ?>">Giới Thiệu</a>
+                <a href="?action=sanpham"   class="<?= $currentPage == 'sanpham'   ? 'active' : '' ?>">Sản phẩm</a>
+                <a href="?action=lienhe"    class="<?= $currentPage == 'lienhe'    ? 'active' : '' ?>">Liên hệ</a>
             </div>
 
         </div>

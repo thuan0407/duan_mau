@@ -8,7 +8,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'dangxuat') {
     header("Location: ?action=dangxuat");
     exit;
 }
-
+$currentPage = $_GET['action'] ?? 'trangchu_admin';
 $page = $_GET['page'] ?? 'dashboard'; // Mặc định trang dashboard
 ?>
 <!DOCTYPE html>
@@ -43,6 +43,10 @@ $page = $_GET['page'] ?? 'dashboard'; // Mặc định trang dashboard
         a{
             text-decoration: none;
         }
+        a.active{
+            font-weight: bold;
+            color:red;
+        }
     </style>
 </head>
 <body>
@@ -54,13 +58,13 @@ $page = $_GET['page'] ?? 'dashboard'; // Mặc định trang dashboard
 </a>
     
   </div>
-        <li><a href="?action=<?='trangchu_admin'?>">Trang chủ</a></li>
-        <li><a href="?action=<?='quanly_danhmuc'?>">Quản lý danh mục</a></li>
-        <li><a href="?action=<?='quanly_sanpham'?>">Quản lý sản phẩm</a></li>
-        <li><a href="?action=<?='quanly_binhluan'?>">Quản lý bình luận</a></li>
-        <li><a href="?action=<?='quanly_taikhoan'?>">Quản lý tài khoản</a></li>
-        <li><a href="?action=<?='quanly_donhang'?>">Quản lý đơn hàng</a></li>
-        <li><a href="?action=<?='dangxuat'?>" name="dangxuat" onclick="return confirm('Bạn có chắc là muốn đăng xuất không?')">Đăng xuất</a></li>
+        <li><a href="?action=<?='trangchu_admin'?>"  class="<?=$currentPage == 'trangchu_admin' ?'active':''?>">Trang chủ</a></li>
+        <li><a href="?action=<?='quanly_danhmuc'?>"  class="<?=$currentPage == 'quanly_danhmuc' ?'active':''?>">Quản lý danh mục</a></li>
+        <li><a href="?action=<?='quanly_sanpham'?>"  class="<?=$currentPage == 'quanly_sanpham' ?'active':''?>">Quản lý sản phẩm</a></li>
+        <li><a href="?action=<?='quanly_binhluan'?>" class="<?=$currentPage == 'quanly_binhluan' ?'active':''?>">Quản lý bình luận</a></li>
+        <li><a href="?action=<?='quanly_taikhoan'?>" class="<?=$currentPage == 'quanly_taikhoan' ?'active':''?>">Quản lý tài khoản</a></li>
+        <li><a href="?action=<?='quanly_donhang'?>"  class="<?=$currentPage == 'quanly_donhang' ?'active':''?>">Quản lý đơn hàng</a></li>
+        <li><a href="?action=<?='dangxuat'?>" name="dangxuat" onclick="return confirm('Bạn có chắc là muốn đăng xuất không?')" class="<?=$currentPage == 'dangxuat' ?'active':''?>">Đăng xuất</a></li>
         
     </div>
 </body>
