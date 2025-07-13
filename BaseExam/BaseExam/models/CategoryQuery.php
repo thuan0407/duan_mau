@@ -70,5 +70,17 @@ class CategoryQuery extends BaseModel{
             echo "Lỗi truy vấn sản phẩm: " . $err->getMessage();
         }
         }
+
+        public function update_danhmuc(Category $danhmuc){        //sửa danh mục
+            try{
+                $id = (int)$danhmuc->id;
+                $sql="UPDATE `category` SET `name` = '".$danhmuc->name."' WHERE `category`.`id` = $id;";
+                $data=$this->pdo->exec($sql);
+                return $data;
+
+            }catch (PDOException $err) {
+            echo "Lỗi truy vấn sản phẩm: " . $err->getMessage();
+        }
+        }
 }
 ?>

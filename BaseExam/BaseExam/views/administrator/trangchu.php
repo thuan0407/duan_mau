@@ -13,6 +13,8 @@
         .content{
             margin-left:300px;  
             text-align: center;
+            background-image: url("/duan_mau/BaseExam/BaseExam/img/thuyen.avif");
+            height:1000px;
         }h1{
             margin:100px;
         }

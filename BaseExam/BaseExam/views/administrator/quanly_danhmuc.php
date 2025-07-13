@@ -61,6 +61,7 @@
                 <td><?=$tt->sum?></td>
                 <td><?=$tt->date?></td>
                 <td>
+                <a href="?action=update_danhmuc&id=<?=$tt->id?>">Sửa / </a>
                 <a href="?action=delete_danhmuc&id=<?=$tt->id?>" onclick="return confirm('Bạn có chắc là muốn xóa không?')">Xóa</a>
                 </td>
             </tr>

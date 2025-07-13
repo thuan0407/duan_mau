@@ -17,6 +17,7 @@ match ($action) {
     'updeta_sanpham'         => (new ControllerQuery)->update_sanpham($id),
     //các luộng phần quản lý danh mục
     'delete_danhmuc'         => (new ControllerQuery)->delete_danhmuc($id),
+    'update_danhmuc'         => (new ControllerQuery)->update_danhmuc($id),
 
 
     //phía người quản trị //////         /////          /////            //////

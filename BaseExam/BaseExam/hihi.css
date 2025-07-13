@@ -1,11 +1,14 @@
 body{
     text-align: center;
     padding: 30px;
-    background-color: orange;
+    background-color: rgb(240, 188, 92);
     justify-content:space-between;
     align-items: center;
     text-decoration: none;
     position: fixed;
     margin-bottom: 20px;
+    box-sizing: 50%;
+    background-image: ;
+    border-radius: 50%;
     box-shadow: 10px 10px 10px 10px rgb(248, 198, 104);
 }

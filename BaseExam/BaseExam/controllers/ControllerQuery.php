@@ -59,7 +59,7 @@ class ControllerQuery{
             foreach($user as $user){
             if($email === "admin@gmail.com" && $pass === "123456"){
                 $_SESSION['admin'] = $email;
-                header("Location: ?action=giaodien"); // chuyển hướng
+                header("Location: ?action=trangchu_admin"); // chuyển hướng
                 exit;
             } else if($email === $user->email && $pass === $user->password){
                 $_SESSION['user'] = $user->name;
@@ -85,6 +85,13 @@ class ControllerQuery{
 
     public function quanly_sanpham(){
         $danhsach = $this->productQuery->all();
+        if(isset($_POST['tim'])){
+            $tukhoa =$_POST['tukhoa'];
+            foreach($danhsach as $tt){
+                
+            }
+        }
+        
         
         include "views/administrator/quanly_sanpham.php";
     }
@@ -112,6 +119,28 @@ class ControllerQuery{
         }
         
         include "views/administrator/quanly_danhmuc.php";
+    }
+
+    public function update_danhmuc($id){
+        $ten_danhmuc_cu=$this->categoryQuery->find($id);
+        $thanhcong="";
+        $loi="";
+        $danhmuc= new Category();
+        if(isset($_POST['update_danhmuc'])){
+            $danhmuc->id   = $id;
+            $danhmuc->name = $_POST['name_danhmuc'];
+            if(empty($danhmuc->name)){
+                $loi="kiểm tra lại dữ liệu";
+            }
+            else{
+                 $ketqua =$this->categoryQuery->update_danhmuc($danhmuc);
+                if($ketqua >0){
+                    $thanhcong="sửa thành công tên thư mục";
+                }
+            }
+        }
+
+        include "views/administrator/update_danhmuc.php";
     }
 
 public function delete_danhmuc($id) {

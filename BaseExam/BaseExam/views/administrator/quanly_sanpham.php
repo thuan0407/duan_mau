@@ -39,7 +39,11 @@
         <h1>Sản phẩm</h1>
         <div class="right">
             <a href="?action=create_sanpham">Thêm sản phẩm</a><br>
-            Search <input type="text">
+
+            <form action="" method="post" enctype="multipart/form-data">
+            <button type="submit" name="tim">Search</button> <input type="text" name="tukhoa">
+            </form>
+
         </div>
         <table>
             <tr>
