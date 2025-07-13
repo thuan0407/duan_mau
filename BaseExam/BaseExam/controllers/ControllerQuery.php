@@ -336,6 +336,7 @@ public function update_sanpham($id) {
     }
 
     public function sanpham(){
+        $danhsach=$this->productQuery->all();
         include "views/user/sanpham.php";
     }
 
