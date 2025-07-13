@@ -33,8 +33,9 @@
 <body>
     <div class="content">
     <h1>Trang quản lý tài khoản</h1>
-            <form action=""method="post">
-            Search <input type="text" name="tim_user">
+            <form action=""method="post" enctype ="multipart/form-data">
+            <button type="submit" name="tim">Tìm</button> <input type="text" name="user">
+            <span style="color:red;"> <?=$err?></span>
         </form>
     <table>
         <tr>

@@ -191,7 +191,26 @@ public function delete_danhmuc($id) {
 
 
     public function quanly_taikhoan(){
+        $err="";
         $danhsach = $this->userQuery->all();
+        if(isset($_POST['tim'])){
+            $user =$_POST['user'];
+            if(empty($user)){
+             $err="bạn chưa nhập tên người dùng";
+            }
+            
+            foreach($danhsach as $tt){
+                if(stripos($tt->name,$user)!==false){
+                    $ketqua[]=$tt;
+                }
+            }
+            if(empty($ketqua)){
+                $err="không tìm thấy";
+            }
+            else{
+                $danhsach=$ketqua;
+            }
+        }
         include "views/administrator/quanly_taikhoan.php";
     }
 
