@@ -84,12 +84,31 @@ class ControllerQuery{
     }
 
     public function quanly_sanpham(){
+        $err="";
         $danhsach = $this->productQuery->all();
         if(isset($_POST['tim'])){
             $tukhoa =$_POST['tukhoa'];
-            foreach($danhsach as $tt){
+           
+                if(empty($tukhoa)){
+                    $err= "bạn chưa nhập nội dung";
+                }
+
+                foreach($danhsach as $tt){
+                    if(stripos($tt->name,$tukhoa) !==false ){
+                        $ketqua[]=$tt;
+                    }
+                }
+
                 
-            }
+                if(empty($ketqua)){
+                    $err="không tìm thấy";
+                    $danhsach=[];
+                }
+                else{
+                    $danhsach=$ketqua;
+                }
+
+            
         }
         
         
