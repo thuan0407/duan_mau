@@ -59,7 +59,7 @@ class CategoryQuery extends BaseModel{
                 $data=$this->pdo->query($sql)->fetch();
                 if($data !== false){
                     $danhmuc = new Product();
-                    $danhmuc->id          =$data['id'];
+                    $danhmuc->id          = $data['id'];
                     $danhmuc->name        = $data['name'];
                     $danhmuc->date        = $data['date'];
                     $danhmuc->sum         = $data['sum'];
@@ -82,5 +82,21 @@ class CategoryQuery extends BaseModel{
             echo "Lỗi truy vấn sản phẩm: " . $err->getMessage();
         }
         }
+
+        public function find_danhmuc($id){//tìm
+            try{
+                $sql="SELECT * FROM `category` WHERE id = $id";
+                $data=$this->pdo->query($sql)->fetch();
+                if($data !== false){
+                    $danhmuc = new Category();
+                    $danhmuc->id          = $data['id'];
+                    $danhmuc->name        = $data['name'];
+                    return $danhmuc;
+                }    
+
+            }catch (PDOException $err) {
+            echo "Lỗi truy vấn sản phẩm: " . $err->getMessage();
+        }
+        } 
 }
 ?>

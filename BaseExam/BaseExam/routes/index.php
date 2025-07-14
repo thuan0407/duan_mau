@@ -2,14 +2,16 @@
 
 $action = $_GET['action'] ?? '/';
 $id = $_GET['id'] ?? '';
+$hot = $_GET['hot'] ?? '';
 
 match ($action) {
     //phái khách hàng///////       ////              /////             ////
-    '/'         => (new ControllerQuery)->webphone(),
+    '/'                 => (new ControllerQuery)->webphone(),
     'gioithieu'         => (new ControllerQuery)->gioithieu(),
-    'trangchu'         => (new ControllerQuery)->trangchu(),
-    'lienhe'         => (new ControllerQuery)->lienhe(),
-    'sanpham'         => (new ControllerQuery)->sanpham(),
+    'trangchu'          => (new ControllerQuery)->trangchu($hot),
+    'lienhe'            => (new ControllerQuery)->lienhe(),
+    'sanpham'           => (new ControllerQuery)->sanpham(),
+    'danhmuc'           => (new ControllerQuery)->danhmuc($id),
 
     //các luông phần quản lý sản phẩm
     'create_sanpham'         => (new ControllerQuery)->create_sanpham(),
@@ -21,18 +23,18 @@ match ($action) {
 
 
     //phía người quản trị //////         /////          /////            //////
-    'dangky'         => (new ControllerQuery)->dangky(),
-    'dangnhap'         => (new ControllerQuery)->dangnhap(),
-    'dangxuat'         => (new ControllerQuery)->dangxuat(),
-    'giaodien'         => (new ControllerQuery)->giaodien(),
+    'dangky'                 => (new ControllerQuery)->dangky(),
+    'dangnhap'               => (new ControllerQuery)->dangnhap(),
+    'dangxuat'               => (new ControllerQuery)->dangxuat(),
+    'giaodien'               => (new ControllerQuery)->giaodien(),
     'trangchu_admin'         => (new ControllerQuery)->trangchu_admin(),
     'quanly_sanpham'         => (new ControllerQuery)->quanly_sanpham(),
     'quanly_danhmuc'         => (new ControllerQuery)->quanly_danhmuc(),
-    'quanly_taikhoan'         => (new ControllerQuery)->quanly_taikhoan(),
-    'quanly_binhluan'         => (new ControllerQuery)->quanly_binhluan(),
+    'quanly_taikhoan'        => (new ControllerQuery)->quanly_taikhoan(),
+    'quanly_binhluan'        => (new ControllerQuery)->quanly_binhluan(),
     'quanly_donhang'         => (new ControllerQuery)->quanly_donhang(),
 
 
     //còn lại
-    default     => (new ControllerQuery)->error404(), // nên thêm hàm xử lý lỗi 404
+    default                  => (new ControllerQuery)->error404(), // nên thêm hàm xử lý lỗi 404
 };

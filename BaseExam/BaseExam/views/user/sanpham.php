@@ -32,7 +32,7 @@
         }
         .item img{
             width:80%;
-            height:250px;
+            height:230px;
         }
         .chiadoi{
             display:flex;

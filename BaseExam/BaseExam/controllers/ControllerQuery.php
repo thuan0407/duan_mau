@@ -200,7 +200,7 @@ public function delete_danhmuc($id) {
             }
             
             foreach($danhsach as $tt){
-                if(stripos($tt->name,$user)!==false){
+                if(stripos($tt->email,$user)!==false || stripos($tt->name,$user)!==false){
                     $ketqua[]=$tt;
                 }
             }
@@ -323,7 +323,10 @@ public function update_sanpham($id) {
 
 
     //phía khách hàng============================================
-    public function trangchu(){
+    public function trangchu($hot){
+        $danhsach= $this->categoryQuery->all();
+        $danhsach_sp1= $this->productQuery->all_hot1();
+        $danhsach_sp2= $this->productQuery->all_hot2();
         include "views/user/trangchu.php";
     }
 
@@ -338,6 +341,11 @@ public function update_sanpham($id) {
     public function sanpham(){
         $danhsach=$this->productQuery->all();
         include "views/user/sanpham.php";
+    }
+
+    public function danhmuc($id){
+        $loaidanhmuc=$this->categoryQuery->find_danhmuc($id);
+        include "views/user/danhmuc.php";
     }
 
 

@@ -48,6 +48,7 @@ $currentPage = $_GET['action'] ?? 'trangchu';
     <nav>
         <div class="left">
             <img src="./img/OIP.jpg" alt="">
+            
             <div class="menu">
                 <a href="?action=trangchu"  class="<?= $currentPage == 'trangchu'  ? 'active' : '' ?>">Trang chủ</a>
                 <a href="?action=gioithieu" class="<?= $currentPage == 'gioithieu' ? 'active' : '' ?>">Giới Thiệu</a>

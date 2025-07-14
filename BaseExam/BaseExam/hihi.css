@@ -18,4 +18,5 @@ body{
     font-weight: bold;
     color: antiquewhite;
     display: block;
+    list-style: none;
 }
