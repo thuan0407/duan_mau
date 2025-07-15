@@ -46,10 +46,9 @@ include_once "header.php"
             text-align: center;
             width:80%;
             height:100px;
-            margin-top:20px;
+            margin:20px 0;
         }
         .binhluan_truoc{
-
             text-align: left;
             margin:20px;
         }
@@ -118,7 +117,7 @@ include_once "header.php"
     </div>
 
 
-    <h1>Bình luận</h1>
+    <h1>Bình luận</h1> <!-- phần bình luận-->
     <div class="binh_luan">
         <?php
         if(!empty($_SESSION['user'])): ?>
@@ -131,7 +130,8 @@ include_once "header.php"
             <?php endif;
         ?>
 
- <div class="binhluan_truoc">
+
+ <div class="binhluan_truoc"> <!-- các bình luận trước đó-->
         <?php
         foreach($comment as $cmt){
             ?>
@@ -143,7 +143,7 @@ include_once "header.php"
     </div>
 
 
-    <h1>Sản phẩm liên quan</h1>
+    <h1>Sản phẩm liên quan</h1> <!--các sản phẩm liên quan -->
     <div class="sp_lien_quan">
             <?php
         foreach($sp_lien_quan as $tt){

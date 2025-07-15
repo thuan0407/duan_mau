@@ -66,6 +66,9 @@ if (session_status() === PHP_SESSION_NONE) {
             height: 250px;
             object-fit: cover;
         }
+        .item:hover{
+            background-color:antiquewhite;
+        }
         .chiadoi {
             display: flex;
             justify-content: center;
@@ -125,7 +128,7 @@ if (session_status() === PHP_SESSION_NONE) {
                             <img src="<?= BASE_ASSETS_UPLOADS . $tt->image ?>" alt="">
                             <span class="ten_sp"><?= $tt->name ?></span><br>
                             <span class="gia_sp"><?= $tt->price ?>đ</span><br>
-                            <a href="#" style="color:red;">>> Xem chi tiết</a>
+                             <a href="?action=chi_tiet_sp&id=<?=$tt->id?>" style="color:red;">>>Xem chi tiết</a>
                             <div class="chiadoi">
                                 <a href="#" class="mua">Mua</a>
                                 <p class="thêm">Thêm vào giỏ hàng</p>
@@ -144,7 +147,7 @@ if (session_status() === PHP_SESSION_NONE) {
                             <img src="<?= BASE_ASSETS_UPLOADS . $tt->image ?>" alt="">
                             <span class="ten_sp"><?= $tt->name ?></span><br>
                             <span class="gia_sp"><?= $tt->price ?>đ</span><br>
-                            <a href="#" style="color:red;">>> Xem chi tiết</a>
+                             <a href="?action=chi_tiet_sp&id=<?=$tt->id?>" style="color:red;">>>Xem chi tiết</a>
                             <div class="chiadoi">
                                 <a href="#" class="mua">Mua</a>
                                 <p class="thêm">Thêm vào giỏ hàng</p>
