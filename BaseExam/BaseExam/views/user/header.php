@@ -1,5 +1,18 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+if (isset($_SESSION['user'])) {
+    $nameUser = $_SESSION['user'];
+}
+else{
+    $nameUser ="";
+}
 $currentPage = $_GET['action'] ?? 'trangchu';
+
+if (isset($_SESSION['iduser'])) {
+    $idUser = $_SESSION['iduser'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,6 +23,25 @@ $currentPage = $_GET['action'] ?? 'trangchu';
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
+        .top{
+            display:flex;
+            justify-content: space-between;
+            align-items: center;
+            padding:0 50px;
+        }
+        .top button{
+            background-color:red;
+            color:white;
+            width: 100px;
+        }
+        .top a{
+            background-color:red;
+            color:white;
+            width: 120px;
+            border: 2px solid black;
+            text-decoration: none;
+            padding:2px 10px;
+        }
         nav{
             display:flex;
             justify-content: space-between;
@@ -43,8 +75,18 @@ $currentPage = $_GET['action'] ?? 'trangchu';
     </style>
 </head>
 <body>
-    <div class="top" style="width:1200px; height:50px; background-color:orange  ;"></div>
-
+    <div class="top" style="width:1200px; height:50px; background-color:orange  ;">
+      <h2><?=$nameUser?></h2>
+      <!-- <h2> id=<?= $idUser?></h2> -->
+      <form action="" method="post">
+        <?php if(!empty($_SESSION['user'])): ?>
+            <button type="submit" name="logout">Đăng xuất</button>
+            <?php else :?>
+            <a href="?action=dangnhap">Đăng nhập</a>
+                <?php endif;
+            ?>
+      </form>
+    </div>
     <nav>
         <div class="left">
             <img src="./img/OIP.jpg" alt="">

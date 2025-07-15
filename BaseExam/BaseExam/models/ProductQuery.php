@@ -155,6 +155,71 @@
         }
         }
 
+public function find_tt($loai) { // Tìm sản phẩm liên quan theo loại
+    try {
+        $sql = "SELECT pro.* FROM `product` as pro 
+                JOIN category as cate
+                ON pro.idcategory = cate.id 
+                WHERE pro.idcategory = $loai";
+
+        $stmt = $this->pdo->query($sql);
+        $list_sp = [];
+
+        while ($data = $stmt->fetch()) {
+            $sanpham = new Product();
+            $sanpham->id          = $data['id'];
+            $sanpham->name        = $data['name'];
+            $sanpham->image       = $data['image'];
+            $sanpham->price       = $data['price'];
+            $sanpham->idcategory  = $data['idcategory'];
+            $sanpham->description = $data['description'];
+            $sanpham->hot         = $data['hot'];
+            $sanpham->view        = $data['view'];
+            $sanpham->discount    = $data['discount'];
+            $sanpham->quantity    = $data['quantity'];
+
+            $list_sp[] = $sanpham; // Thêm vào mảng
+        }
+
+        return $list_sp;
+
+    } catch (PDOException $err) {
+        echo "Lỗi truy vấn sản phẩm: " . $err->getMessage();
+        return []; // Trả về mảng rỗng nếu lỗi
+    }
+}
+
+        public function find_comment($id){//hiện toàn bộ thông tin
+            try{
+                $sql="SELECT cmt.content, pro.*, user.name as nameUser, user.id as iduser FROM `product` as pro 
+                    JOIN comment  as cmt  ON pro.id        = cmt.idproduct
+                    JOIN user     as user ON user.id       = cmt.iduser 
+                    Where pro.id =$id";
+                $data=$this->pdo->query($sql)->fetchAll();
+                $dulieu=[];
+                foreach($data as $tt){
+                    $sanpham = new Product();
+                    $sanpham->id=$tt['id'];
+                    $sanpham->name        = $tt['name'];
+                    $sanpham->image       = $tt['image'];
+                    $sanpham->price       = $tt['price'];
+                    $sanpham->idcategory  = $tt['idcategory'];
+                    $sanpham->description = $tt['description'];
+                    $sanpham->hot         = $tt['hot'];
+                    $sanpham->view        = $tt['view'];
+                    $sanpham->discount    = $tt['discount'];
+                    $sanpham->quantity    = $tt['quantity'];
+                    $sanpham->nameUser    = $tt['nameUser'];
+                    $sanpham->content     = $tt['content'];
+                    $sanpham->iduser      = $tt['iduser'];
+                    $dulieu[]=$sanpham;
+                }
+                return $dulieu;
+
+            }catch (PDOException $err) {
+            echo "Lỗi truy vấn sản phẩm: " . $err->getMessage();
+        }
+        }
 
     }
     ?>

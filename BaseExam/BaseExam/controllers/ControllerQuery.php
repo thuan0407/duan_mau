@@ -49,31 +49,40 @@ class ControllerQuery{
         include "views/chung/webphone.php";
     }
 
-    public function dangnhap(){
-        $err="";
-        $user = $this->userQuery->all();
-        if(isset($_POST['dangnhap'])){
-            $email = $_POST['email'];
-            $pass = $_POST['password'];
+public function dangnhap() {
+    $err = "";
+    $userList = $this->userQuery->all();
 
-            foreach($user as $user){
-            if($email === "admin@gmail.com" && $pass === "123456"){
-                $_SESSION['admin'] = $email;
-                header("Location: ?action=trangchu_admin"); // chuyển hướng
-                exit;
-            } else if($email === $user->email && $pass === $user->password){
-                $_SESSION['user'] = $user->name;
-                header("Location: ?action=trangchu"); // chuyển hướng
-                exit;
-            }
-            else{
-                $err="Đăng nhập thất bại hãy kiểm tra lại các trường thông tin";
-            }
-            }
+    if (isset($_POST['dangnhap'])) {
+        $email = $_POST['email'];
+        $pass  = $_POST['password'];
 
+        // Admin đăng nhập
+        if ($email === "admin@gmail.com" && $pass === "123456") {
+            $_SESSION['admin'] = $email;
+            header("Location: ?action=trangchu_admin");
+            exit;
         }
-        include "views/chung/login.php";
+
+        // Người dùng thường
+        $isLogin = false;
+
+        foreach ($userList as $user) {
+            if ($email === $user->email && $pass === $user->password) {
+                $_SESSION['user']   = $user->name;  //bắt tên người dùng
+                $_SESSION['iduser'] = $user->id;    //bắt id của người đăng nhập-->quan trọng
+                header("Location: ?action=trangchu");
+                exit;
+            }
+        }
+
+        // Sau vòng lặp nếu chưa đăng nhập được
+        $err = "Đăng nhập thất bại! Vui lòng kiểm tra lại email hoặc mật khẩu.";
     }
+
+    include "views/chung/login.php";
+}
+
 
     public function giaodien(){
         
@@ -327,6 +336,16 @@ public function update_sanpham($id) {
         $danhsach= $this->categoryQuery->all();
         $danhsach_sp1= $this->productQuery->all_hot1();
         $danhsach_sp2= $this->productQuery->all_hot2();
+        if(isset($_POST['logout'])){
+                             // Xóa toàn bộ session
+            session_unset(); // Xóa tất cả biến session
+            session_destroy(); // Hủy toàn bộ session
+
+            // Chuyển hướng về trang đăng nhập hoặc trang chủ
+            header("Location: ?action=dangnhap");
+    exit;
+
+        }
         include "views/user/trangchu.php";
     }
 
@@ -346,6 +365,32 @@ public function update_sanpham($id) {
     public function danhmuc($id){
         $loaidanhmuc=$this->categoryQuery->find_danhmuc($id);
         include "views/user/danhmuc.php";
+    }
+
+    public function chi_tiet_sp($id){
+        $chi_tiet_sp = $this->productQuery->find($id);      // dữ liệu chi tiết của sản phẩm
+        $loai= $chi_tiet_sp->idcategory;                    // loại của sản phẩm trực thuộc
+        $sp_lien_quan =$this->productQuery->find_tt($loai); // dữ liệu các sản phẩm liên quan
+        $comment =$this->productQuery->find_comment($id);   // nội dung bình luận của sản phẩm
+        
+        $comment1 = new Comment();
+        if(isset($_POST['gui'])){
+            $comment1->content        = $_POST['comment'];
+            $comment1->date           = date("Y-m-d H:i:s");
+            $comment1->idproduct      = $id;
+            $comment1->iduser         = $_SESSION['iduser'];
+             
+            $noidung =$_POST['comment'];
+            if(!empty($noidung)){
+                 $ketqua = $this->commentQuery->create($comment1);
+                if($ketqua ===1){
+                    $comment = $this->productQuery->find_comment($id);
+                }
+            }
+
+
+        }
+        include "views/user/trang_chi_tiet.php";
     }
 
 

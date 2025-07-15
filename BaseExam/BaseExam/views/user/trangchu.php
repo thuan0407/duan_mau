@@ -1,3 +1,10 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -78,6 +85,10 @@
         }
         .ten_sp, .gia_sp, .thêm {
             font-weight: bold;
+        }
+        .item{
+            border:1px solid black;
+            padding:20px;
         }
     </style>
 </head>
