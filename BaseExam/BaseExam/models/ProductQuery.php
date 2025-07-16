@@ -105,7 +105,7 @@
 
         public function all_hot1(){//hiện toàn bộ thông tin
             try{
-                $sql="SELECT * FROM `product` Where hot = 1 LIMIT 4";
+                $sql="SELECT * FROM `product` Where hot = 1";
                 $data=$this->pdo->query($sql)->fetchAll();
                 $dulieu=[];
                 foreach($data as $tt){
@@ -131,7 +131,7 @@
 
         public function all_hot2(){//hiện toàn bộ thông tin
             try{
-                $sql="SELECT * FROM `product` Where hot = 2 LIMIT 4";
+                $sql="SELECT * FROM `product` Where hot = 2 ";
                 $data=$this->pdo->query($sql)->fetchAll();
                 $dulieu=[];
                 foreach($data as $tt){
@@ -153,6 +153,11 @@
             }catch (PDOException $err) {
             echo "Lỗi truy vấn sản phẩm: " . $err->getMessage();
         }
+        }
+
+        public function all_khuyenmai() {
+            $sql = "SELECT * FROM `product` Where hot = 3 "; // tùy điều kiện
+            return $this->pdo->query($sql)->fetchAll(PDO::FETCH_OBJ);
         }
 
 public function find_tt($loai) { // Tìm sản phẩm liên quan theo loại

@@ -1,220 +1,236 @@
-<?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
+    <?php
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
 
-?>
+$action = $_GET['action'] ?? 'hot1';
+    ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang chủ sản phẩm</title>
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-        .banner {
-        position: relative;
-        width: 100%;
-        height: 300px;
-        overflow: hidden;
-        }
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Trang chủ sản phẩm</title>
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+            .banner {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            }
 
-        .banner img {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.6s ease-in-out;
-        }
-        .danhmuc {
-            border: 1px solid black;
-            margin: 20px;
-            padding: 20px;
-            width: 200px;
-            /* Xoá height cố định để tự giãn */
-        }
-        .danhmuc ul {
-            padding-left: 0;
-        }
-        .danhmuc li {
-            list-style: none;
-            margin-top: 10px;
-        }
-        .danhmuc li a {
-            text-decoration: none;
-            color: black;
-        }
-        .danhmuc li a:hover {
-            color: red;
-        }
-        main {
-            display: flex;
-        }
-        .sanpham {
-            width: 1000px;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            text-align: center;
-            gap: 20px;
-            margin: 50px;
-        }
-        .item img {
-            width: 80%;
-            height: 250px;
+            .banner img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-        }
-        .item:hover{
-            background-color:antiquewhite;
-        }
-        .chiadoi {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .mua {
-            color: white;
-            border: 1px solid black;
-            background-color: red;
-            width: 100px;
-            height: 30px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 10px;
-            font-weight: bold;
-        }
-        .ten_sp, .gia_sp, .thêm {
-            font-weight: bold;
-        }
-        .item{
-            border:1px solid black;
-            padding:20px;
-        }
-    </style>
-</head>
-<body onload="start()">
+            transition: transform 0.6s ease-in-out;
+            }
+            .menu{
+                padding-top:30px;
+            }
+            main .menu a{
+                font-size:20px;
+            }
+            .content{
+                width:1000px;
+                display: grid;
+                grid-template-columns: repeat(4,1fr);
+                text-align: center;
+                gap:20px;
+                margin:50px;
+            }
+            .item{
+                max-width:100%;
+                padding:50px 30px;
+                border:1px solid black;
+                padding-bottom:0;
+            }
+            .item:hover{
+                background-color:antiquewhite;
+            }
+            .item img{
+                width:80%;
+                height:230px;
+            }
+            .chiadoi{
+                display:flex;
+                justify-content: center;
+                align-items: center;
+                
+            }
+            .mua{
+                color:white;
+                border:1px solid black;
+                background-color:red;
+                width:100px;
+                height:30px;
+                display:flex;
+                text-align: center;
+                justify-content: center;
+                align-items: center;
+                border-radius: 10px;
+                margin:0;
+                font-weight: bold;
+            }
+            .ten_sp, .gia_sp, .a, .thêm{
+                font-weight: bold;
+            }
+            .active{
+                color:red;
+            }
+            .menu a:hover{
+                color:red;
+            }
 
-    <?php require_once 'header.php'; ?>
 
-    <!-- Banner slideshow -->
-    <div class="banner">
-        <img id="anh_banner" src="./img/banner0.jpg" alt="Banner slideshow">
-    </div>
+        </style>
+    </head>
+    <body onload="start()">
 
-    <main>
-        <!-- Danh mục -->
-        <div class="danhmuc">
-            <h3>Danh mục:</h3>
-            <ul>
-                <?php if (!empty($danhsach)): ?>
-                    <?php foreach($danhsach as $tt): ?>
-                        <li><a href="?action=danhmuc&id=<?= $tt->id ?>"><?= $tt->name ?></a></li>
-                    <?php endforeach; ?>
-                <?php endif; ?>
-            </ul>
+        <?php require_once 'header.php'; ?>
+
+        <!-- Banner slideshow -->
+        <div class="banner">
+            <img id="anh_banner" src="./img/banner0.jpg" alt="Banner slideshow">
         </div>
 
-        <!-- Sản phẩm -->
+        <main>
+<div class="menu">
+    <a href="?action=hot1" class="<?= $action === 'hot1' ? 'active' : '' ?>">SẢN PHẨM HOT</a>
+    <a href="?action=hot2" class="<?= $action === 'hot2' ? 'active' : '' ?>">SẢN PHẨM MỚI</a>
+    <a href="?action=khuyenmai" class="<?= $action === 'khuyenmai' ? 'active' : '' ?>">SẢN PHẨM KHUYẾN MÃI</a>
+</div>
+        
+
         <div class="content">
-            <!-- HOT -->
-            <h1>Sản phẩm hot</h1>
-            <div class="sanpham">
-                <?php if (!empty($danhsach_sp1)): ?>
-                    <?php foreach($danhsach_sp1 as $tt): ?>
-                        <div class="item">
-                            <img src="<?= BASE_ASSETS_UPLOADS . $tt->image ?>" alt="">
-                            <span class="ten_sp"><?= $tt->name ?></span><br>
-                            <span class="gia_sp"><?= $tt->price ?>đ</span><br>
-                             <a href="?action=chi_tiet_sp&id=<?=$tt->id?>" style="color:red;">>>Xem chi tiết</a>
-                            <div class="chiadoi">
-                                <a href="#" class="mua">Mua</a>
-                                <p class="thêm">Thêm vào giỏ hàng</p>
-                            </div>
+        <?php
+    switch($action){
+        case 'hot1': 
+        foreach($danhsach_hot1 as $tt){
+            ?>
+                <div class="item">
+                        <img src="<?=BASE_ASSETS_UPLOADS .$tt->image?>" alt=""><br>
+                        <span class="ten_sp" style="font-size:20px;"><?=$tt->name?></span> <br>
+                        <span class="gia_sp"><?=$tt->price?>đ</span> <br>
+                        <a href="?action=chi_tiet_sp&id=<?=$tt->id?>" style="color:red;">>>Xem chi tiết</a>
+                        <div class="chiadoi">
+                            <a href="#" class="mua">Mua</a>
+                            <p class="thêm">Thêm vào giỏi hàng</p> <br>
                         </div>
-                    <?php endforeach; ?>
-                <?php endif; ?>
-            </div>
-
-            <!-- MỚI -->
-            <h1>Sản phẩm mới</h1>
-            <div class="sanpham">
-                <?php if (!empty($danhsach_sp2)): ?>
-                    <?php foreach($danhsach_sp2 as $tt): ?>
-                        <div class="item">
-                            <img src="<?= BASE_ASSETS_UPLOADS . $tt->image ?>" alt="">
-                            <span class="ten_sp"><?= $tt->name ?></span><br>
-                            <span class="gia_sp"><?= $tt->price ?>đ</span><br>
-                             <a href="?action=chi_tiet_sp&id=<?=$tt->id?>" style="color:red;">>>Xem chi tiết</a>
-                            <div class="chiadoi">
-                                <a href="#" class="mua">Mua</a>
-                                <p class="thêm">Thêm vào giỏ hàng</p>
-                            </div>
+                </div>
+                            <?php
+                    }
+            break;
+        case 'hot2':
+        foreach($danhsach_hot2 as $tt){
+            ?>
+                <div class="item">
+                        <img src="<?=BASE_ASSETS_UPLOADS .$tt->image?>" alt=""><br>
+                        <span class="ten_sp" style="font-size:20px;"><?=$tt->name?></span> <br>
+                        <span class="gia_sp"><?=$tt->price?>đ</span> <br>
+                        <a href="?action=chi_tiet_sp&id=<?=$tt->id?>" style="color:red;">>>Xem chi tiết</a>
+                        <div class="chiadoi">
+                            <a href="#" class="mua">Mua</a>
+                            <p class="thêm">Thêm vào giỏi hàng</p> <br>
                         </div>
-                    <?php endforeach; ?>
-                <?php endif; ?>
-            </div>
-
-            <!-- KHUYẾN MÃI (tạm để trống) -->
-            <h1>Sản phẩm khuyến mãi</h1>
-            <div class="sanpham">
-                <!-- Bạn có thể đổ dữ liệu ở đây sau -->
-            </div>
+                </div>
+                            <?php
+                    }
+            break;
+        case 'khuyenmai':
+        foreach($danhsach_khuyenmai as $tt){
+            ?>
+                <div class="item">
+                        <img src="<?=BASE_ASSETS_UPLOADS .$tt->image?>" alt=""><br>
+                        <span class="ten_sp" style="font-size:20px;"><?=$tt->name?></span> <br>
+                        <span class="gia_sp"><?=$tt->price?>đ</span> <br>
+                        <a href="?action=chi_tiet_sp&id=<?=$tt->id?>" style="color:red;">>>Xem chi tiết</a>
+                        <div class="chiadoi">
+                            <a href="#" class="mua">Mua</a>
+                            <p class="thêm">Thêm vào giỏi hàng</p> <br>
+                        </div>
+                </div>
+                            <?php
+                    }
+            break;
+         default: 
+        foreach($danhsach_hot1 as $tt){
+            ?>
+                <div class="item">
+                        <img src="<?=BASE_ASSETS_UPLOADS .$tt->image?>" alt=""><br>
+                        <span class="ten_sp" style="font-size:20px;"><?=$tt->name?></span> <br>
+                        <span class="gia_sp"><?=$tt->price?>đ</span> <br>
+                        <a href="?action=chi_tiet_sp&id=<?=$tt->id?>" style="color:red;">>>Xem chi tiết</a>
+                        <div class="chiadoi">
+                            <a href="#" class="mua">Mua</a>
+                            <p class="thêm">Thêm vào giỏi hàng</p> <br>
+                        </div>
+                </div>
+                            <?php  
+                    }
+            break;  
+    }
+        ?>
         </div>
-    </main>
 
-    <?php require_once 'footer.php'; ?>
 
-<script>
-  window.onload = function () {
-    const anh_banner = document.getElementById('anh_banner');
-    let index = 0;
-    const arr = [];
+        </main>
 
-    // Load ảnh trước
-    for (let i = 0; i < 5; i++) {
-      arr[i] = './img/banner' + i + '.jpg';
-    }
+        <?php require_once 'footer.php'; ?>
 
-    function slideIn(newSrc) {
-      // Tạo ảnh mới nằm bên phải
-      const img = document.createElement('img');
-      img.src = newSrc;
-      img.style.position = 'absolute';
-      img.style.top = 0;
-      img.style.left = '100%';
-      img.style.width = '100%';
-      img.style.height = '100%';
-      img.style.objectFit = 'cover';
-      img.style.transition = 'left 0.6s ease-in-out';
+    <script>
+    window.onload = function () {
+        const anh_banner = document.getElementById('anh_banner');
+        let index = 0;
+        const arr = [];
 
-      const banner = document.querySelector('.banner');
-      banner.appendChild(img);
+        // Load ảnh trước
+        for (let i = 0; i < 5; i++) {
+        arr[i] = './img/banner' + i + '.jpg';
+        }
 
-      // Kéo ảnh hiện tại sang trái, ảnh mới trượt vào
-      setTimeout(() => {
-        img.style.left = '0';
-        anh_banner.style.left = '-100%';
-      }, 10);
+        function slideIn(newSrc) {
+        // Tạo ảnh mới nằm bên phải
+        const img = document.createElement('img');
+        img.src = newSrc;
+        img.style.position = 'absolute';
+        img.style.top = 0;
+        img.style.left = '100%';
+        img.style.width = '100%';
+        img.style.height = '100%';
+        img.style.objectFit = 'cover';
+        img.style.transition = 'left 0.6s ease-in-out';
 
-      // Sau khi xong hiệu ứng, xóa ảnh cũ và thay ID
-      setTimeout(() => {
-        banner.removeChild(anh_banner);
-        img.id = 'anh_banner';
-      }, 700);
-    }
+        const banner = document.querySelector('.banner');
+        banner.appendChild(img);
 
-    function start() {
-      index = (index + 1) % arr.length;
-      slideIn(arr[index]);
-      setTimeout(start, 3000);
-    }
+        // Kéo ảnh hiện tại sang trái, ảnh mới trượt vào
+        setTimeout(() => {
+            img.style.left = '0';
+            anh_banner.style.left = '-100%';
+        }, 10);
 
-    start();
-  };
-</script>
+        // Sau khi xong hiệu ứng, xóa ảnh cũ và thay ID
+        setTimeout(() => {
+            banner.removeChild(anh_banner);
+            img.id = 'anh_banner';
+        }, 700);
+        }
 
-</body>
-</html>
+        function start() {
+        index = (index + 1) % arr.length;
+        slideIn(arr[index]);
+        setTimeout(start, 3000);
+        }
+
+        start();
+    };
+    </script>
+
+    </body>
+    </html>

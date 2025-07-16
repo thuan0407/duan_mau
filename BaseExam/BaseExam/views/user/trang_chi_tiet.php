@@ -45,8 +45,9 @@ include_once "header.php"
         .binh_luan input{
             text-align: center;
             width:80%;
-            height:100px;
+            height:50px;
             margin:20px 0;
+            border-radius:30px;
         }
         .binhluan_truoc{
             text-align: left;
@@ -123,7 +124,7 @@ include_once "header.php"
         if(!empty($_SESSION['user'])): ?>
         <form action="" method="post">
             <input type="text" name="comment" placeholder="bạn đang nghĩ gì ?">
-            <button type="submit" name="gui">Gửi</button>
+            <button type="submit" name="gui" style="background-color:red; color:white; border-radius:10px;">Gửi</button>
             </form>
         <?php else:?>
             <a href="?action=dangnhap">Đăng nhập</a>

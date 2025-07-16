@@ -12,7 +12,12 @@ match ($action) {
     'lienhe'            => (new ControllerQuery)->lienhe(),
     'sanpham'           => (new ControllerQuery)->sanpham(),
     'danhmuc'           => (new ControllerQuery)->danhmuc($id),
-    'chi_tiet_sp'           => (new ControllerQuery)->chi_tiet_sp($id),
+    'chi_tiet_sp'       => (new ControllerQuery)->chi_tiet_sp($id),
+    'hot1'              => (new ControllerQuery)->hot1(),
+    'hot2'              => (new ControllerQuery)->hot2(),
+    'khuyenmai'         => (new ControllerQuery)->khuyenmai(),
+    'default'         => (new ControllerQuery)->trangchu(),
+
 
     //các luông phần quản lý sản phẩm
     'create_sanpham'         => (new ControllerQuery)->create_sanpham(),

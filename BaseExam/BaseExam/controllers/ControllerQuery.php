@@ -334,8 +334,9 @@ public function update_sanpham($id) {
     //phía khách hàng============================================
     public function trangchu($hot){
         $danhsach= $this->categoryQuery->all();
-        $danhsach_sp1= $this->productQuery->all_hot1();
-        $danhsach_sp2= $this->productQuery->all_hot2();
+        $danhsach_hot1= $this->productQuery->all_hot1();
+        $danhsach_hot2= $this->productQuery->all_hot2();
+        $danhsach_khuyenmai = $this->productQuery->all_khuyenmai();
         if(isset($_POST['logout'])){
                              // Xóa toàn bộ session
             session_unset(); // Xóa tất cả biến session
@@ -348,6 +349,22 @@ public function update_sanpham($id) {
         }
         include "views/user/trangchu.php";
     }
+
+    public function hot1(){
+        $danhsach_hot1= $this->productQuery->all_hot1();
+        include "views/user/trangchu.php";
+    }
+
+    public function hot2(){
+        $danhsach_hot2= $this->productQuery->all_hot2();
+        include "views/user/trangchu.php";
+    }
+
+    public function khuyenmai(){
+        $danhsach_khuyenmai = $this->productQuery->all_khuyenmai();
+        include "views/user/trangchu.php";
+    }
+
 
     public function gioithieu(){
         include "views/user/gioithieu.php";
