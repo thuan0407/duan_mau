@@ -30,6 +30,7 @@ match ($action) {
 
     //phía người quản trị //////         /////          /////            //////
     'dangky'                 => (new ControllerQuery)->dangky(),
+    'dangky'                 => (new ControllerQuery())->dangky(),
     'dangnhap'               => (new ControllerQuery)->dangnhap(),
     'dangxuat'               => (new ControllerQuery)->dangxuat(),
     'giaodien'               => (new ControllerQuery)->giaodien(),

@@ -4,27 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        body{
-            margin:0 auto;
-            width:1200px;
-        }
-        .content{
-            margin-left:300px;  
-        }h1{
-            margin:0px;
-        }
-        table{
-            border-collapse:collapse;
-            margin:100px;
-        }
-        th,td{
-            border-bottom:1px solid black;
-            padding:15px 30px;
-        }
-    </style>
-    
+    <title>Document</title>  
+    <link rel="stylesheet" href="public/css/admin/quanly_danhmuc.css">
 </head>
 <body>
     <div class="content">

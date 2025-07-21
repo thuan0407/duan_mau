@@ -41,8 +41,8 @@ class ControllerQuery{
                 }
             }
         }
-        
         include "views/chung/dangky.php";
+        
     }
     
     public function dangxuat(){

@@ -21,58 +21,7 @@ if (isset($_SESSION['iduser'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <style>
-        .top{
-            display:flex;
-            justify-content: space-between;
-            align-items: center;
-            padding:0 50px;
-        }
-        .top button{
-            background-color:red;
-            color:white;
-            width: 100px;
-        }
-        .top a{
-            background-color:red;
-            color:white;
-            width: 120px;
-            border: 2px solid black;
-            text-decoration: none;
-            padding:2px 10px;
-        }
-        nav{
-            display:flex;
-            justify-content: space-between;
-            align-items: center;
-            margin:10px 20px;
-        }
-        .left{
-            display:flex;
-            margin:10px 0;
-            align-items: center;
-        }.left img{
-            width:200px;
-        }
-.menu a {
-    color: black;
-    text-decoration: none;
-    padding: 8px 12px;
-    font-weight: normal;
-}
-
-.menu a.active {
-    color: red;
-    font-weight: bold;
-}
-        .right{
-            display:flex;
-        }
-        .gioihang{
-            margin-right:20px;
-        }
-    </style>
+    <link rel="stylesheet" href="public/css/user/header.css">
 </head>
 <body>
     <div class="top" style="width:1200px; height:50px; background-color:orange  ;">

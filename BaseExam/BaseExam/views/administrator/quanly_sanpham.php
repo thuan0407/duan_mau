@@ -6,33 +6,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
-        <style>
-            body{
-                width:1200px;
-                margin:0 auto;
-            }
-            .content{
-                margin-left:300px;
-            }
-            .right{
-                text-align: right;
-            }
-            table {
-                border-collapse: separate;
-                border-spacing: 0 12px; /* tạo khoảng cách dọc giữa các <tr> */
-                width: 100%;
-            }
-
-            th, td {
-                padding: 10px 15px;
-                border: 1px solid #ccc;
-                text-align: center;
-            }
-
-            th {
-                background-color: #f2f2f2;
-            }
-        </style>
+        <link rel="stylesheet" href="public/css/admin/quanly_sanpham.css">
     </head>
     <body>
         <div class="content">

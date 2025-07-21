@@ -4,51 +4,17 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Đăng nhập</title>
-    <style>
-        body{
-            margin:0 auto;
-            width: 1200px;
-        }
-        .top{
-            width:1200px;
-            background-color:orange;
-            height:50px;
-        }
-        .dangnhap{
-            border:1px solid black;
-            padding:50px;
-            width:400px;
-            margin:100px 400px;
-            box-shadow: 10px 10px 10px 10px rgb(248, 198, 104);
-
-        }
-        .top img{
-            width:200px;
-        }
-        h2{
-            text-align: center;
-        }
-        a{
-            margin-left:130px;
-        }
-        button{
-            margin-left:150px;
-        }
-
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="public/css/chung/dangnhap.css">
 </head>
 <body>
-    <div class="top"><img src="./img/OIP.jpg" alt=""></div>
-    <div class="dangnhap">
-    <h2>Đăng nhập</h2>
-
-
-
-    <form method="POST">
+        <form method="POST">
     <table>
+        <h2>Đăng nhập</h2>
         <tr>
             <td>Tên đăng nhâp:</td>
             <td><input type="email" name="email" required placeholder="Nhập email"></td>
@@ -58,15 +24,23 @@ if (session_status() === PHP_SESSION_NONE) {
             <td>Mật khẩu:</td>
             <td><input type="password" name="password" required placeholder="Nhập mật khẩu"></td>
         </tr>
+
+        <tr>
+            <td>Vai trò:</td>
+            <td>
+                <select name="role" id="">
+                    <option value="1">Khách hàng</option>
+                    <option value="0">Người quản trị</option>
+                </select>
+            </td>
+        </tr>
         
     </table><br>
 
         <button type="submit" name="dangnhap">Đăng nhập</button>
+        <br>
+        <span><?=$err?></span>
+        <br> <a href="?action=dangky">Đăng ký tài khoản</a>
     </form>
-
-    <a href="?action=dangky">Đăng ký tài khoản</a>
-     </div>
-
-    <?php if (isset($error)) echo "<p style='color:red;'>$error</p>"; ?>
 </body>
 </html>

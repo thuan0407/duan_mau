@@ -5,60 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        body{
-            margin:0 auto;
-        }
-        .boloc{
-            text-align: right;
-            margin:50px;
-        }
-        .content{
-            width:1000px;
-            display: grid;
-            grid-template-columns: repeat(4,1fr);
-            text-align: center;
-            gap:20px;
-            margin:50px;
-        }
-        .item{
-            max-width:100%;
-            padding:50px 30px;
-            border:1px solid black;
-            padding-bottom:0;
-        }
-        .item:hover{
-            background-color:antiquewhite;
-        }
-        .item img{
-            width:80%;
-            height:230px;
-        }
-        .chiadoi{
-            display:flex;
-            justify-content: center;
-            align-items: center;
-            
-        }
-        .mua{
-            color:white;
-            border:1px solid black;
-            background-color:red;
-            width:100px;
-            height:30px;
-            display:flex;
-            text-align: center;
-            justify-content: center;
-            align-items: center;
-            border-radius: 10px;
-            margin:0;
-            font-weight: bold;
-        }
-        .ten_sp, .gia_sp, .a, .thêm{
-            font-weight: bold;
-        }
-        
-    </style>
+    <link rel="stylesheet" href="public/css/user/sanpham.css">
 </head>
 <body>
 <h1>Trang sản phẩm</h1>

@@ -4,31 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        body{
-            margin:0 auto;
-            width:1200px;
-        }
-        .content{
-            margin-left:300px;  
-        }h1{
-            margin:0px;
-        }
-        form{
-            margin:50px ;
-            text-align: right;
-        }
-        table{
-            border-collapse:collapse;
-            
-        }
-        th, td{
-            padding:15px 20px;
-            border-bottom:1px solid black;
-        }
-    </style>
-    
+    <title>Document</title> 
+    <link rel="stylesheet" href="public/css/admin/quanly_taikhoan.css">
 </head>
 <body>
     <div class="content">
