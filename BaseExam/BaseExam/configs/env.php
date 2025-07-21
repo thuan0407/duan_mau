@@ -15,7 +15,7 @@ define('PATH_ASSETS_UPLOADS',   PATH_ROOT . 'assets/uploads/');
 define('PATH_CONTROLLER',       PATH_ROOT . 'controllers/');
 
 define('PATH_MODEL',            PATH_ROOT . 'models/');
-
+    
 define('DB_HOST', 'localhost');
 define('DB_PORT',     '3306');
 define('DB_USERNAME', 'root');

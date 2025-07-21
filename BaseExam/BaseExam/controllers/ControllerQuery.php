@@ -66,7 +66,6 @@ public function dangnhap() {
 
         // Người dùng thường
         $isLogin = false;
-
         foreach ($userList as $user) {
             if ($email === $user->email && $pass === $user->password) {
                 $_SESSION['user']   = $user->name;  //bắt tên người dùng
