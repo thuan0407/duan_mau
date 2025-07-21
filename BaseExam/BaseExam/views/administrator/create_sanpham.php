@@ -74,6 +74,7 @@
     <span><?= $loi?></span>
     <span><?= $thanhcong?></span>
     </main>
+    
 </form>
 </body>
 </html>
