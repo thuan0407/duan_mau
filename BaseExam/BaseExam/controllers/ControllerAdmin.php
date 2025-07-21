@@ -1,5 +1,5 @@
 <?php
-class ControllerQuery{
+class ControllerAdmin{
     public $categoryQuery;
     public $commentQuery;
     public $productQuery;
@@ -11,76 +11,6 @@ class ControllerQuery{
         $this->productQuery = new ProductQuery();
         $this->commentQuery = new CommentQuery();
     }
-
-    //phía người quản trị
-    public function webphone(){
-        include "views/chung/webphone.php";
-    }
-
-    public function dangky(){
-        $loi="";
-        $thanhcong="";
-        $user = new User();
-        if(isset($_POST['dangky'])){
-            $user->name=$_POST['name'];
-            $user->email=$_POST['email'];
-            $user->address=$_POST['address'];
-            $user->number=$_POST['number'];
-            $user->password=$_POST['password'];
-
-            if(empty($user->name)===""||empty($user->address)===""||empty($user->number)===""||empty($user->password)==="" ||empty($user->email)===""){
-                $loi="kiểm tra lại các trường giữ liệu";
-            }
-            else{
-                $ketqua = $this->userQuery->create($user);
-                if($ketqua ===1){
-                    $thanhcong="Đăng ký thành công";
-                }
-                else{
-                    $loi="Đăng ký thất bại";
-                }
-            }
-        }
-        include "views/chung/dangky.php";
-        
-    }
-    
-    public function dangxuat(){
-        include "views/chung/webphone.php";
-    }
-
-public function dangnhap() {
-    $err = "";
-    $userList = $this->userQuery->all();
-
-    if (isset($_POST['dangnhap'])) {
-        $email = $_POST['email'];
-        $pass  = $_POST['password'];
-
-        // Admin đăng nhập
-        if ($email === "admin@gmail.com" && $pass === "123456") {
-            $_SESSION['admin'] = $email;
-            header("Location: ?action=trangchu_admin");
-            exit;
-        }
-
-        // Người dùng thường
-        $isLogin = false;
-        foreach ($userList as $user) {
-            if ($email === $user->email && $pass === $user->password) {
-                $_SESSION['user']   = $user->name;  //bắt tên người dùng
-                $_SESSION['iduser'] = $user->id;    //bắt id của người đăng nhập-->quan trọng
-                header("Location: ?action=trangchu");
-                exit;
-            }
-        }
-
-        // Sau vòng lặp nếu chưa đăng nhập được
-        $err = "Đăng nhập thất bại! Vui lòng kiểm tra lại email hoặc mật khẩu.";
-    }
-
-    include "views/chung/login.php";
-}
 
 
     public function giaodien(){
@@ -327,89 +257,5 @@ public function update_sanpham($id) {
     // Hiển thị giao diện sửa
     include "views/administrator/update_sanpham.php";
 }
-
-
-
-    //phía khách hàng============================================
-    public function trangchu($hot){
-        $danhsach= $this->categoryQuery->all();
-        $danhsach_hot1= $this->productQuery->all_hot1();
-        $danhsach_hot2= $this->productQuery->all_hot2();
-        $danhsach_khuyenmai = $this->productQuery->all_khuyenmai();
-        if(isset($_POST['logout'])){
-                             // Xóa toàn bộ session
-            session_unset(); // Xóa tất cả biến session
-            session_destroy(); // Hủy toàn bộ session
-
-            // Chuyển hướng về trang đăng nhập hoặc trang chủ
-            header("Location: ?action=dangnhap");
-    exit;
-
-        }
-        include "views/user/trangchu.php";
-    }
-
-    public function hot1(){
-        $danhsach_hot1= $this->productQuery->all_hot1();
-        include "views/user/trangchu.php";
-    }
-
-    public function hot2(){
-        $danhsach_hot2= $this->productQuery->all_hot2();
-        include "views/user/trangchu.php";
-    }
-
-    public function khuyenmai(){
-        $danhsach_khuyenmai = $this->productQuery->all_khuyenmai();
-        include "views/user/trangchu.php";
-    }
-
-
-    public function gioithieu(){
-        include "views/user/gioithieu.php";
-    }
-
-    public function lienhe(){
-        include "views/user/lienhe.php";
-    }
-
-    public function sanpham(){
-        $danhsach=$this->productQuery->all();
-        include "views/user/sanpham.php";
-    }
-
-    public function danhmuc($id){
-        $loaidanhmuc=$this->categoryQuery->find_danhmuc($id);
-        include "views/user/danhmuc.php";
-    }
-
-    public function chi_tiet_sp($id){
-        $chi_tiet_sp = $this->productQuery->find($id);      // dữ liệu chi tiết của sản phẩm
-        $loai= $chi_tiet_sp->idcategory;                    // loại của sản phẩm trực thuộc
-        $sp_lien_quan =$this->productQuery->find_tt($loai); // dữ liệu các sản phẩm liên quan
-        $comment =$this->productQuery->find_comment($id);   // nội dung bình luận của sản phẩm
-        
-        $comment1 = new Comment();
-        if(isset($_POST['gui'])){
-            $comment1->content        = $_POST['comment'];
-            $comment1->date           = date("Y-m-d H:i:s");
-            $comment1->idproduct      = $id;
-            $comment1->iduser         = $_SESSION['iduser'];
-             
-            $noidung =$_POST['comment'];
-            if(!empty($noidung)){
-                 $ketqua = $this->commentQuery->create($comment1);
-                if($ketqua ===1){
-                    $comment = $this->productQuery->find_comment($id);
-                }
-            }
-
-
-        }
-        include "views/user/trang_chi_tiet.php";
-    }
-
-
 }
-
 ?>
