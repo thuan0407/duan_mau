@@ -21,7 +21,7 @@ $action = $_GET['action'] ?? 'hot1';
 
         <!-- Banner slideshow -->
         <div class="banner">
-            <img id="anh_banner" src="./img/banner0.jpg" alt="Banner slideshow">
+            <img  src="./img/banner0.jpg" alt="Banner slideshow">
         </div>
 
         <main>
